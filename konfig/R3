@@ -1,0 +1,32 @@
+!R3:
+en
+conf t
+hostname R3
+ip domain-name admin
+crypto key generate rsa
+1024
+enable password cisco
+line vty 0 15
+transport input ssh
+login local
+int gig0/0
+ip address 192.168.50.1 /30
+no shut
+exit
+int se0/0/0
+ip address 22.0.0.2 /8
+no shut
+exit
+int se0/0/1
+ip address 21.0.0.2 /8
+clock rate 128000
+no shut
+exit
+int gig0/1
+ip address 192.168.40.1 /30
+router rip 
+version 2
+network 192.168.40.0
+network 21.0.0.0
+network 22.0.0.0
+network 192.168.50.0

@@ -1,0 +1,12 @@
+!SW1:
+en
+conf t
+hostname SW1
+spanning-tree mode rapid-pvst
+spanning-tree vlan 1 root primary
+exit
+int range fa0/1-2
+channel-group 1 mode active
+exit
+int port-channel 1
+switchport mode trunk
